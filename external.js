@@ -8,16 +8,21 @@ function playround(userinput,compchoice){
     userinput=userinput.toLowerCase();
     
     if(compchoice===userinput){
-        return "play again as it's a tie";
+        
+        return 0;
     }else if(userinput==="rock" && compchoice==="scissors"){
-        return "You won but i won't take a chance next time";
+        
+        return 1;
     }else if(userinput==="paper" && compchoice==="rock"){
-        return "You won but i won't take a chance next time";
+        
+        return 1;
     }else if(userinput==="scissors" && compchoice==="paper"){
-        return "You won but i won't take a chance next time";
+       
+        return 1;
     }
     else{
-        return"You lose,Try to play again you may win the game";
+        
+        return -1;
     }
 
 
@@ -27,8 +32,16 @@ let compcount=0;
 let usercount=0;
 for(let i=0;i<5;i++){
     let userchoice=prompt("hey what's your choice to beat the Machines choice?")
-    let comp=getComputerChoice();  
-    console.log(playround(userchoice,comp));
+    let comp=getComputerChoice(); 
+    if(playround(userchoice,comp)==0){
+        continue;
+    }
+
+   if(playround(userchoice,comp)==1){
+    usercount++;
+   }else if(playround(userchoice,comp)==-1){
+    compcount++;
+   }
 
 }
 console.log(`You:${usercount}  Machine:${compcount}`);
