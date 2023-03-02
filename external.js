@@ -30,19 +30,33 @@ function playround(userinput,compchoice){
 }
 let compcount=0;
 let usercount=0;
-for(let i=0;i<5;i++){
-    let userchoice=prompt("hey what's your choice to beat the Machines choice?")
-    let comp=getComputerChoice(); 
-    if(playround(userchoice,comp)==0){
-        continue;
-    }
+let buttons=document.querySelectorAll('button');
+let res=document.querySelector('.res');
+const content = document.createElement('div');
+content.classList.add('content');
 
-   if(playround(userchoice,comp)==1){
-    usercount++;
-   }else if(playround(userchoice,comp)==-1){
-    compcount++;
-   }
+buttons.forEach((button) => {
 
-}
-console.log(`You:${usercount}  Machine:${compcount}`);
+    // and for each one we add a 'click' listener
+    button.addEventListener('click', () => {
+        console.log(button.className);
+        let comp=getComputerChoice();
+        if(playround(button.className,comp)==1){
+            usercount++;
+           }else if(playround(button.className,comp)==-1){
+            compcount++;
+           }
+
+          
+
+           res.innerHTML=`You:${usercount}  Machine:${compcount}`;
+
+           
+           
+    });
+  });
+console.log(buttons);
+
+
+
 
